@@ -1,9 +1,9 @@
 import json,datetime,pytz
 
-def load_json():
-  with open('data/data.json', mode='r', encoding="utf8") as jFile:
+def load_json(name):
+  with open(f'data/{name}.json', mode='r', encoding="utf8") as jFile:
       jdata = json.load(jFile)
-  print(jdata)
+  print(f'[{name}.json] 讀取！')
   jFile.close()
   return jdata
 

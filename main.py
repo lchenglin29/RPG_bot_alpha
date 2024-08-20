@@ -50,8 +50,9 @@ async def on_command_error(ctx, error):
   elif isinstance(error, commands.CommandOnCooldown):
     message = f'再等 {error.retry_after:.0f} 秒啦'
     await ctx.reply(message)
-  else: 
-    await ctx.reply(f'我不知道你在供三小:({error}')
+  else:
+    embed = discord.Embed(title=':x:哎呀，有問題:(',description=f'你戳到新Bug了，請像開發者反應\n錯誤：{error}')
+    await ctx.reply(embed=embed)
 
 async def load_extensions():
     for filename in os.listdir("./cogs"):
