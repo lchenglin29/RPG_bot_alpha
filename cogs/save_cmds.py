@@ -5,6 +5,7 @@ from discord.ext import commands
 from core.core import Cog_Extension
 from objects.player_object import users, players
 from typing import Optional
+from cogs.ch1 import start_g
 
 class save_cmds(Cog_Extension):
   
@@ -27,10 +28,12 @@ class save_cmds(Cog_Extension):
                   await interaction.response.send_message(embed=embed)
                   return
               user.create_save(self.save_name.value,self.player_name.value,avatar)
+              run_the_start_plot = False
               if len(user.save) == 0:
                   user.save.append(self.save_name.value)
                   msg = "已將你自動切換至該存檔！"
                   user.save_file()
+                  run_the_start_plot = True
               else:
                   msg = "輸入指令來切換存檔！"
               embed = discord.Embed(
@@ -40,6 +43,13 @@ class save_cmds(Cog_Extension):
               )
               print('?')
               await interaction.response.send_message(embed=embed)
+              if run_the_start_plot:
+                  await asyncio.sleep(3)
+                  try:
+                      await start_g(interaction)
+                  except Exception as e:
+                      print(e)
+                      
       await interaction.response.send_modal(Modal())
   
   @app_commands.command(name="玩家資訊",description="查看玩家資訊")
