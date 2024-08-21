@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import os,asyncio,datetime, pytz,aiohttp
-bot_token = os.environ['bot_token']
+bot_token = os.environ['RPG_BOT_TOKEN']
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='r!', intents= intents)
